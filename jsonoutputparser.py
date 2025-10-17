@@ -16,14 +16,22 @@ model = ChatHuggingFace(llm=llm)
 parser = JsonOutputParser()
 
 template = PromptTemplate(
-    template='Give me 5 facts about {topic} \n {format_instruction}',
-    input_variables=['topic'],
+    # template = 'Give me the name,age and city of a fictional person \n {format_instruction}'
+    template='Give me 5 facts about {topic} \n {format_instruction}', 
+    input_variables=['topic'], # input_variable =[]
     partial_variables={'format_instruction': parser.get_format_instructions()}
 )
 
-chain = template | model | parser
+# prompt = template.format()
+#print(prompt)
+# result = model.invoke(prompt)
+# print(result)
+# final_result=parser.parse(result.content)
 
-result = chain.invoke({'topic':'black hole'})
+chain = template | model | parser
+# result = chain.invoke({})
+result = chain.invoke({'topic':'black hole'}) # we want to pass a empty dictanary if no input variable 
 
 print(result)
+
 
