@@ -1,8 +1,13 @@
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 from langchain_core.prompts import PromptTemplate
+# Note:
+# In newer LangChain versions, StructuredOutputParser and ResponseSchema
+# may need to be imported from langchain_classic.output_parsers:
+#
+# from langchain_classic.output_parsers import StructuredOutputParser, ResponseSchema
+# This project currently uses the import below.
 from langchain.output_parsers import StructuredOutputParser, ResponseSchema
-
 load_dotenv()
 
 # Define the model
